@@ -9,94 +9,107 @@
 html{scroll-behavior:smooth}
 body{font-family:'Inter',system-ui,-apple-system,'Segoe UI',Roboto,Arial,sans-serif;background:#fff;color:#1d1d1f;overflow-x:hidden;line-height:1.47}
 
-/* NAV */
-nav{position:fixed;top:0;left:0;right:0;z-index:100;height:48px;background:rgba(0,0,0,.8);backdrop-filter:saturate(180%) blur(20px);-webkit-backdrop-filter:saturate(180%) blur(20px);border-bottom:1px solid rgba(255,255,255,.08)}
+/* NAV — Apple glass */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;height:48px;background:rgba(0,0,0,.8);backdrop-filter:saturate(180%) blur(20px);-webkit-backdrop-filter:saturate(180%) blur(20px);border-bottom:1px solid rgba(255,255,255,.08);transition:transform .35s}
 .nav-inner{max-width:980px;margin:0 auto;height:48px;display:flex;align-items:center;justify-content:space-between;padding:0 22px}
-.nav-logo{font-weight:600;font-size:1.1rem;color:#fff;text-decoration:none;letter-spacing:-.3px}
+.nav-logo{font-weight:700;font-size:1.15rem;color:#fff;text-decoration:none;letter-spacing:-.3px}
 .nav-links{display:flex;gap:0;list-style:none;height:48px;align-items:center}
-.nav-links li a{color:rgba(255,255,255,.6);text-decoration:none;font-size:12px;font-weight:400;padding:0 18px;height:48px;display:flex;align-items:center;transition:color .3s;letter-spacing:.3px}
+.nav-links li a{color:rgba(255,255,255,.55);text-decoration:none;font-size:12px;font-weight:400;padding:0 20px;height:48px;display:flex;align-items:center;transition:color .3s;letter-spacing:.02em}
 .nav-links li a:hover{color:#fff}
-.nav-icons{display:flex;gap:16px}
-.nav-icons a{color:rgba(255,255,255,.6);text-decoration:none;font-size:14px;transition:color .3s}
+.nav-icons{display:flex;gap:20px}
+.nav-icons a{color:rgba(255,255,255,.55);text-decoration:none;font-size:13px;transition:color .3s;font-weight:300;letter-spacing:.5px}
 .nav-icons a:hover{color:#fff}
 
 /* SECTIONS */
-.section{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:80px 24px;position:relative;overflow:hidden}
+.section{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:100px 24px 80px;position:relative;overflow:hidden}
 .section.dark{background:#000;color:#fff}
 .section.light{background:#f5f5f7;color:#1d1d1f}
 .section.white{background:#fff;color:#1d1d1f}
 
-.section .product-img{max-width:65%;height:auto;margin:30px auto;display:block;position:relative;z-index:1;will-change:transform}
-.section .product-img.large{max-width:85%}
-.section .product-img.medium{max-width:55%}
+.section .product-img{max-width:62%;height:auto;margin:24px auto;display:block;position:relative;z-index:1;will-change:transform;border-radius:24px}
+.section .product-img.large{max-width:82%}
+.section .product-img.medium{max-width:52%}
+.section .product-img.round{max-width:48%;border-radius:50%}
 
-h1{font-size:clamp(2rem,5.5vw,56px);font-weight:600;line-height:1.07;letter-spacing:-.28px;max-width:720px;margin:0 auto 12px}
-h1 + p{font-size:clamp(1rem,2vw,21px);font-weight:400;line-height:1.19;letter-spacing:.231px;max-width:580px;margin:0 auto 24px;color:inherit;opacity:.8}
-.cta-group{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-top:8px}
-.cta-pill{display:inline-flex;align-items:center;gap:4px;padding:8px 15px;border-radius:980px;font-size:14px;font-weight:400;text-decoration:none;transition:all .3s;letter-spacing:-.224px}
+h1{font-size:clamp(2rem,5.5vw,56px);font-weight:600;line-height:1.07;letter-spacing:-.28px;max-width:720px;margin:0 auto 10px}
+h1 + p{font-size:clamp(1rem,2vw,21px);font-weight:400;line-height:1.19;letter-spacing:.01em;max-width:580px;margin:0 auto 20px;color:inherit;opacity:.8}
+.cta-group{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-top:4px}
+.cta-pill{display:inline-flex;align-items:center;gap:6px;padding:10px 20px;border-radius:100px;font-size:14px;font-weight:400;text-decoration:none;transition:all .3s;letter-spacing:-.01em}
 .cta-pill.blue{background:#0071e3;color:#fff;border:1px solid transparent}
-.cta-pill.blue:hover{background:#0077ed}
-.cta-pill.outline-light{background:transparent;color:#fff;border:1px solid #fff}
+.cta-pill.blue:hover{background:#0077ed;transform:scale(1.03)}
+.cta-pill.outline-light{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.6);border-radius:100px}
 .cta-pill.outline-light:hover{background:rgba(255,255,255,.1)}
-.cta-pill.outline-dark{background:transparent;color:#0066cc;border:1px solid #0066cc}
+.cta-pill.outline-dark{background:transparent;color:#0066cc;border:1px solid #0066cc;border-radius:100px}
 .cta-pill.outline-dark:hover{background:rgba(0,102,204,.04)}
-.cta-pill.link{background:transparent;color:#0066cc;border:none;padding:8px 4px;font-size:17px}
-.cta-pill.link::after{content:' >';font-size:14px}
+.cta-pill.link{background:transparent;color:#0066cc;border:none;padding:8px 6px;font-size:17px;border-radius:0}
+.cta-pill.link::after{content:' ›';font-size:15px}
 .cta-pill.link.dark{color:#2997ff}
-.price{font-size:17px;font-weight:400;color:inherit;opacity:.6;margin-top:6px}
-.subhead{font-size:clamp(1rem,2vw,21px);font-weight:400;color:inherit;opacity:.7;margin-bottom:4px;letter-spacing:.231px}
+.price{font-size:17px;font-weight:400;color:inherit;opacity:.55;margin-top:4px}
+.subhead{font-size:clamp(1rem,2vw,21px);font-weight:400;color:inherit;opacity:.65;margin-bottom:4px;letter-spacing:.01em}
 
-/* GRID */
-.grid-section{padding:60px 24px;background:#f5f5f7;text-align:center}
+/* GRID COLLECTION — cards redondeadas */
+.grid-section{padding:70px 24px;background:#f5f5f7;text-align:center}
 .grid-section h2{font-size:40px;font-weight:600;line-height:1.1;margin-bottom:8px;letter-spacing:0}
-.grid-section h2 + p{font-size:21px;font-weight:400;opacity:.7;margin-bottom:40px;letter-spacing:.196px}
-.grid{max-width:980px;margin:0 auto;display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
-.grid-card{background:#fff;border-radius:8px;padding:40px 24px;cursor:pointer;transition:transform .3s;box-shadow:rgba(0,0,0,.22) 3px 5px 30px 0px;display:flex;flex-direction:column;align-items:center}
-.grid-card:hover{transform:scale(1.02)}
-.grid-card img{max-width:80%;height:auto;margin-bottom:16px}
-.grid-card h3{font-size:28px;font-weight:400;line-height:1.14;letter-spacing:.196px;margin-bottom:4px}
-.grid-card p{font-size:14px;font-weight:400;color:rgba(0,0,0,.8);letter-spacing:-.224px;margin-bottom:12px}
+.grid-section h2 + p{font-size:21px;font-weight:400;opacity:.65;margin-bottom:44px;letter-spacing:.01em}
+.grid{max-width:980px;margin:0 auto;display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+.grid-card{background:#fff;border-radius:24px;padding:32px 20px;cursor:pointer;transition:transform .4s,box-shadow .4s;box-shadow:rgba(0,0,0,.12) 0 8px 30px;display:flex;flex-direction:column;align-items:center}
+.grid-card:hover{transform:scale(1.03) translateY(-4px);box-shadow:rgba(0,0,0,.18) 0 12px 40px}
+.grid-card img{max-width:78%;height:auto;margin-bottom:14px;border-radius:20px}
+.grid-card h3{font-size:26px;font-weight:400;line-height:1.14;letter-spacing:.01em;margin-bottom:3px}
+.grid-card p{font-size:14px;font-weight:400;color:rgba(0,0,0,.7);letter-spacing:-.01em;margin-bottom:10px}
+
+/* DECOMPOSITION SECTION — la prenda se descompone al hacer scroll */
+.decomp-wrap{position:relative;height:300vh;background:#000;overflow:hidden}
+.decomp-sticky{position:sticky;top:0;height:100vh;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.decomp-canvas{position:absolute;inset:0;display:flex;align-items:center;justify-content:center}
+.decomp-layer{position:absolute;will-change:transform,opacity;transition:all .1s linear;border-radius:50%}
+.decomp-layer img{width:100%;height:100%;object-fit:cover;border-radius:inherit;display:block}
+.decomp-label{position:absolute;bottom:48px;left:50%;transform:translateX(-50%);color:rgba(255,255,255,.6);font-size:14px;font-weight:300;letter-spacing:1px;text-align:center;pointer-events:none}
+.decomp-label strong{color:#fff;font-weight:500}
+.decomp-progress{position:absolute;bottom:24px;left:50%;transform:translateX(-50%);width:200px;height:2px;background:rgba(255,255,255,.1);border-radius:2px}
+.decomp-progress-bar{height:100%;background:#0071e3;border-radius:2px;width:0%;transition:width .1s linear}
+
+/* COLOR STRIP — swatches circulares */
+.color-strip{padding:48px 24px;background:#000;text-align:center}
+.color-strip h2{font-size:26px;font-weight:400;line-height:1.14;color:#fff;letter-spacing:.01em;margin-bottom:20px}
+.color-swatches{display:flex;justify-content:center;gap:28px;flex-wrap:wrap}
+.swatch-wrap{text-align:center}
+.swatch{width:52px;height:52px;border-radius:50%;cursor:pointer;transition:transform .3s,border-color .3s;border:2px solid transparent;margin:0 auto}
+.swatch:hover{transform:scale(1.18)}
+.swatch.active{border-color:rgba(255,255,255,.7)}
+.swatch-label{font-size:11px;color:rgba(255,255,255,.5);margin-top:6px;letter-spacing:-.01em}
+
+/* SPECS — tarjetas redondeadas */
+.specs{padding:70px 24px;background:#fff;text-align:center}
+.specs h2{font-size:40px;font-weight:600;line-height:1.1;margin-bottom:44px;letter-spacing:0}
+.specs-grid{max-width:800px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.spec-item{text-align:left;background:#f5f5f7;border-radius:20px;padding:28px;transition:transform .3s,box-shadow .3s}
+.spec-item:hover{transform:translateY(-3px);box-shadow:0 8px 24px rgba(0,0,0,.06)}
+.spec-item h3{font-size:17px;font-weight:600;margin-bottom:4px;letter-spacing:-.02em;line-height:1.24}
+.spec-item p{font-size:14px;color:rgba(0,0,0,.55);letter-spacing:-.01em;line-height:1.4}
 
 /* FOOTER */
-footer{background:#f5f5f7;padding:40px 24px 24px;border-top:1px solid rgba(0,0,0,.06)}
+footer{background:#f5f5f7;padding:40px 24px 24px;border-top:1px solid rgba(0,0,0,.04)}
 footer .f-inner{max-width:980px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
-footer h4{font-size:12px;font-weight:600;color:#1d1d1f;margin-bottom:8px;letter-spacing:-.12px}
-footer a{display:block;font-size:12px;color:rgba(0,0,0,.6);text-decoration:none;padding:3px 0;letter-spacing:-.12px}
+footer h4{font-size:12px;font-weight:600;color:#1d1d1f;margin-bottom:10px;letter-spacing:-.01em}
+footer a{display:block;font-size:12px;color:rgba(0,0,0,.5);text-decoration:none;padding:4px 0;letter-spacing:-.01em}
 footer a:hover{color:#0066cc}
-footer .copy{text-align:center;font-size:12px;color:rgba(0,0,0,.48);margin-top:24px;padding-top:16px;border-top:1px solid rgba(0,0,0,.06);letter-spacing:-.12px}
-
-/* PARALLAX */
-.parallax-wrap{position:relative;overflow:hidden;min-height:100vh}
-.parallax-bg{position:absolute;inset:-20%;width:140%;height:140%;background-size:cover;background-position:center;z-index:0;will-change:transform}
-.parallax-content{position:relative;z-index:1;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:80px 24px;text-align:center;background:rgba(0,0,0,.35)}
-.parallax-content.light-overlay{background:rgba(245,245,247,.6)}
-.parallax-content h2{font-size:clamp(1.8rem,4vw,40px);font-weight:600;line-height:1.1;margin-bottom:8px;letter-spacing:0}
-.parallax-content p{font-size:21px;font-weight:400;margin-bottom:16px;letter-spacing:.196px}
-
-/* COLOR STRIP */
-.color-strip{padding:40px 24px;background:#000;text-align:center}
-.color-strip h2{font-size:28px;font-weight:400;line-height:1.14;color:#fff;letter-spacing:.196px;margin-bottom:24px}
-.color-swatches{display:flex;justify-content:center;gap:24px;flex-wrap:wrap}
-.swatch{width:48px;height:48px;border-radius:50%;cursor:pointer;transition:transform .3s;border:2px solid transparent}
-.swatch:hover{transform:scale(1.15)}
-.swatch.active{border-color:#fff}
-.swatch-label{font-size:12px;color:rgba(255,255,255,.6);margin-top:6px;text-align:center;letter-spacing:-.12px}
-
-/* SPECS */
-.specs{padding:60px 24px;background:#fff;text-align:center}
-.specs h2{font-size:40px;font-weight:600;line-height:1.1;margin-bottom:40px;letter-spacing:0}
-.specs-grid{max-width:800px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:32px}
-.spec-item{text-align:left}
-.spec-item h3{font-size:17px;font-weight:600;margin-bottom:4px;letter-spacing:-.374px;line-height:1.24}
-.spec-item p{font-size:14px;color:rgba(0,0,0,.6);letter-spacing:-.224px;line-height:1.29}
+footer .copy{text-align:center;font-size:11px;color:rgba(0,0,0,.4);margin-top:24px;padding-top:16px;border-top:1px solid rgba(0,0,0,.04);letter-spacing:-.01em}
 
 /* RESPONSIVE */
-@media(max-width:834px){.grid{grid-template-columns:1fr}.nav-links{display:none}.specs-grid{grid-template-columns:1fr}footer .f-inner{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:480px){.section{padding:60px 16px}.section .product-img{max-width:90%}.cta-group{flex-direction:column;align-items:center}}
+@media(max-width:834px){.grid{grid-template-columns:1fr;gap:16px}.nav-links{display:none}.specs-grid{grid-template-columns:1fr}footer .f-inner{grid-template-columns:repeat(2,1fr);gap:16px}}
+@media(max-width:480px){.section{padding:70px 16px 50px}.section .product-img,.section .product-img.large,.section .product-img.medium{max-width:92%}.cta-group{flex-direction:column;align-items:center;gap:10px}.grid-card img{max-width:90%}}
 
 /* ANIMATIONS */
-.fade-up{opacity:0;transform:translateY(40px);transition:all .8s cubic-bezier(.4,0,.2,1)}
+.fade-up{opacity:0;transform:translateY(36px);transition:all .7s cubic-bezier(.4,0,.2,1)}
 .fade-up.visible{opacity:1;transform:translateY(0)}
+
+/* PARALLAX BASIC */
+.parallax-wrap{position:relative;overflow:hidden;height:100vh}
+.parallax-bg{position:absolute;inset:-20%;width:140%;height:140%;background-size:cover;background-position:center;z-index:0;will-change:transform}
+.parallax-content{position:relative;z-index:1;height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:0 24px;text-align:center;background:rgba(0,0,0,.3)}
+.parallax-content h2{font-size:clamp(1.8rem,4vw,40px);font-weight:600;line-height:1.1;margin-bottom:8px;color:#fff;letter-spacing:0}
+.parallax-content p{font-size:21px;font-weight:400;margin-bottom:16px;color:rgba(255,255,255,.8);letter-spacing:.01em}
 </style>
 </head><body>
 
@@ -111,19 +124,19 @@ footer .copy{text-align:center;font-size:12px;color:rgba(0,0,0,.48);margin-top:2
     <li><a href="#">Soporte</a></li>
   </ul>
   <div class="nav-icons">
-    <a href="#">&#128269;</a>
-    <a href="#">&#128722;</a>
+    <a href="#">Buscar</a>
+    <a href="#">Bolsa</a>
   </div>
 </div>
 </nav>
 
 <!-- HERO -->
 <section class="section dark">
-  <div class="parallax-wrap" style="position:absolute;inset:0;min-height:auto">
+  <div class="parallax-wrap" style="position:absolute;inset:0;height:100%">
     <div class="parallax-bg" id="heroParallax" style="background-image:url('https://images.unsplash.com/photo-1445205170230-053b83016050?w=1600&q=85')"></div>
   </div>
   <div style="position:relative;z-index:1">
-    <p class="subhead fade-up" style="color:rgba(255,255,255,.7)">Colecci&oacute;n Oto&ntilde;o 2026</p>
+    <p class="subhead fade-up" style="color:rgba(255,255,255,.65)">Colecci&oacute;n Oto&ntilde;o 2026</p>
     <h1 class="fade-up">NEO <span style="color:#2997ff">Collection</span></h1>
     <p class="fade-up">Ropa premium dise&ntilde;ada para quienes viven al l&iacute;mite. Tejidos sostenibles, corte impecable.</p>
     <div class="cta-group fade-up">
@@ -133,42 +146,68 @@ footer .copy{text-align:center;font-size:12px;color:rgba(0,0,0,.48);margin-top:2
   </div>
 </section>
 
-<!-- PRODUCT SHOWCASE 1 -->
+<!-- CHAQUETA -->
 <section class="section light">
   <p class="subhead fade-up">NEO Chaqueta T&eacute;cnica</p>
   <h1 class="fade-up">Dise&ntilde;ada para el <span style="color:#0071e3">movimiento</span></h1>
-  <p class="fade-up">Cortavientos ultraligero con tejido reciclado. Costuras termoselladas, cremallera impermeable y capucha ajustable.</p>
-  <img class="product-img large fade-up" src="https://images.unsplash.com/photo-1591047139829-d91aecb6caea?w=1200&q=85" alt="Chaqueta NEO" id="parallax1">
+  <p class="fade-up">Cortavientos ultraligero con tejido reciclado. Costuras termoselladas y capucha ajustable.</p>
+  <img class="product-img large fade-up" src="https://images.unsplash.com/photo-1591047139829-d91aecb6caea?w=1200&q=85" alt="Chaqueta NEO">
   <div class="cta-group fade-up">
     <a href="#" class="cta-pill blue">Comprar desde 189 &euro;</a>
     <a href="#" class="cta-pill outline-dark">M&aacute;s informaci&oacute;n</a>
   </div>
 </section>
 
-<!-- PARALLAX LIFESTYLE -->
+<!-- PARALLAX LIFESTYLE 1 -->
 <div class="parallax-wrap">
-  <div class="parallax-bg" id="lifestyleParallax" style="background-image:url('https://images.unsplash.com/photo-1469334031218-e382a71b716b?w=1600&q=85')"></div>
+  <div class="parallax-bg" id="ls1" style="background-image:url('https://images.unsplash.com/photo-1469334031218-e382a71b716b?w=1600&q=85')"></div>
   <div class="parallax-content">
-    <p class="subhead" style="color:#fff">Sostenibilidad sin concesiones</p>
-    <h2 style="color:#fff">Algod&oacute;n org&aacute;nico.<br>100% reciclable.</h2>
-    <div class="cta-group">
-      <a href="#" class="cta-pill blue">Conocer materiales</a>
-    </div>
+    <p class="subhead" style="color:rgba(255,255,255,.65)">Sostenibilidad sin concesiones</p>
+    <h2>Algod&oacute;n org&aacute;nico.<br>100% reciclable.</h2>
+    <div class="cta-group"><a href="#" class="cta-pill blue">Conocer materiales</a></div>
   </div>
 </div>
 
-<!-- GRID COLLECTION -->
+<!-- GRID COLECCIÓN -->
 <div class="grid-section">
   <h2 class="fade-up">Explora la <span style="color:#0071e3">colecci&oacute;n</span></h2>
   <p class="fade-up">Cuatro prendas esenciales. Un mismo esp&iacute;ritu.</p>
   <div class="grid" id="collectionGrid"></div>
 </div>
 
-<!-- PRODUCT SHOWCASE 2 -->
+<!-- DECOMPOSICIÓN DE PRENDA — animación al hacer scroll -->
+<div class="decomp-wrap" id="decompSection">
+  <div class="decomp-sticky" id="decompSticky">
+    <div class="decomp-canvas" id="decompCanvas">
+      <div class="decomp-layer" id="layerBase" style="width:320px;height:320px;opacity:1;transform:translate(0,0) scale(1);z-index:1">
+        <img src="https://images.unsplash.com/photo-1556821840-3a63f95609a7?w=600&q=85" alt="Prenda base">
+      </div>
+      <div class="decomp-layer" id="layerTejido" style="width:260px;height:260px;opacity:0;transform:translate(0,40px) scale(.85);z-index:2;filter:brightness(1.1)">
+        <img src="https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?w=600&q=85" alt="Tejido">
+      </div>
+      <div class="decomp-layer" id="layerCostura" style="width:200px;height:200px;opacity:0;transform:translate(0,60px) scale(.7);z-index:3;filter:brightness(1.15)">
+        <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=600&q=85" alt="Costura">
+      </div>
+      <div class="decomp-layer" id="layerAislante" style="width:150px;height:150px;opacity:0;transform:translate(0,80px) scale(.55);z-index:4;filter:brightness(1.2)">
+        <img src="https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=600&q=85" alt="Aislante">
+      </div>
+      <div class="decomp-layer" id="layerForro" style="width:100px;height:100px;opacity:0;transform:translate(0,100px) scale(.4);z-index:5;filter:brightness(1.25)">
+        <img src="https://images.unsplash.com/photo-1564257631407-4deb1f99d992?w=600&q=85" alt="Forro interior">
+      </div>
+    </div>
+    <div class="decomp-label" id="decompLabel">
+      <strong>Tejido exterior</strong> &mdash; Poli&eacute;ster reciclado<br>
+      <span style="font-size:12px;opacity:.5">Despl&aacute;zate para descomponer</span>
+    </div>
+    <div class="decomp-progress"><div class="decomp-progress-bar" id="decompBar"></div></div>
+  </div>
+</div>
+
+<!-- SUDADERA -->
 <section class="section white">
   <p class="subhead fade-up" style="color:rgba(0,0,0,.5)">NEO Sudadera Premium</p>
   <h1 class="fade-up">Algod&oacute;n <span style="color:#0071e3">org&aacute;nico</span><br>felpa de 380 g/m&sup2;</h1>
-  <p class="fade-up">Corte oversized, capucha doble capa, bolsillo canguro con cremallera oculta. Te&ntilde;ida con tintes naturales.</p>
+  <p class="fade-up">Corte oversized, capucha doble capa, bolsillo con cremallera oculta.</p>
   <img class="product-img medium fade-up" src="https://images.unsplash.com/photo-1556821840-3a63f95609a7?w=1000&q=85" alt="Sudadera NEO">
   <div class="cta-group fade-up">
     <a href="#" class="cta-pill blue">Comprar desde 129 &euro;</a>
@@ -180,22 +219,20 @@ footer .copy{text-align:center;font-size:12px;color:rgba(0,0,0,.48);margin-top:2
 <div class="color-strip fade-up">
   <h2>Elige tu color</h2>
   <div class="color-swatches">
-    <div><div class="swatch active" style="background:#1a1a1a"></div><div class="swatch-label">Negro</div></div>
-    <div><div class="swatch" style="background:#f5f0e8"></div><div class="swatch-label">Crudo</div></div>
-    <div><div class="swatch" style="background:#2d5a3d"></div><div class="swatch-label">Bosque</div></div>
-    <div><div class="swatch" style="background:#8b4513"></div><div class="swatch-label">Caoba</div></div>
+    <div class="swatch-wrap"><div class="swatch active" style="background:#1a1a1a"></div><div class="swatch-label">Negro</div></div>
+    <div class="swatch-wrap"><div class="swatch" style="background:#f5f0e8"></div><div class="swatch-label">Crudo</div></div>
+    <div class="swatch-wrap"><div class="swatch" style="background:#2d5a3d"></div><div class="swatch-label">Bosque</div></div>
+    <div class="swatch-wrap"><div class="swatch" style="background:#8b4513"></div><div class="swatch-label">Caoba</div></div>
   </div>
 </div>
 
 <!-- PARALLAX 2 -->
 <div class="parallax-wrap">
-  <div class="parallax-bg" id="lifestyleParallax2" style="background-image:url('https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=1600&q=85')"></div>
+  <div class="parallax-bg" id="ls2" style="background-image:url('https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=1600&q=85')"></div>
   <div class="parallax-content">
-    <h2 style="color:#fff">Hecho para durar.<br>Dise&ntilde;ado para destacar.</h2>
-    <p style="color:rgba(255,255,255,.8)">Prendas que desaf&iacute;an las temporadas.</p>
-    <div class="cta-group">
-      <a href="#" class="cta-pill blue">Ver toda la colecci&oacute;n</a>
-    </div>
+    <h2>Hecho para durar.<br>Dise&ntilde;ado para destacar.</h2>
+    <p>Prendas que desaf&iacute;an las temporadas.</p>
+    <div class="cta-group"><a href="#" class="cta-pill blue">Ver toda la colecci&oacute;n</a></div>
   </div>
 </div>
 
@@ -203,7 +240,7 @@ footer .copy{text-align:center;font-size:12px;color:rgba(0,0,0,.48);margin-top:2
 <div class="specs">
   <h2 class="fade-up">Lo que hace &uacute;nica a <span style="color:#0071e3">NEO</span></h2>
   <div class="specs-grid">
-    <div class="spec-item fade-up"><h3>Tejidos sostenibles</h3><p>Algod&oacute;n org&aacute;nico certificado, poliéster reciclado de redes de pesca. Cada prenda ahorra hasta 200 litros de agua.</p></div>
+    <div class="spec-item fade-up"><h3>Tejidos sostenibles</h3><p>Algod&oacute;n org&aacute;nico certificado, poli&eacute;ster reciclado de redes de pesca. Cada prenda ahorra hasta 200 litros de agua.</p></div>
     <div class="spec-item fade-up"><h3>Confort t&eacute;rmico</h3><p>Tecnolog&iacute;a de doble capa que regula la temperatura. Fresco en verano, c&aacute;lido en invierno.</p></div>
     <div class="spec-item fade-up"><h3>Costura reforzada</h3><p>Dobles costuras en todos los puntos de tensi&oacute;n. Probadas para soportar m&aacute;s de 500 lavados.</p></div>
     <div class="spec-item fade-up"><h3>Garant&iacute;a NEO</h3><p>2 a&ntilde;os de garant&iacute;a en todos nuestros productos. Si algo falla, lo reparamos o reemplazamos.</p></div>
@@ -222,17 +259,73 @@ footer .copy{text-align:center;font-size:12px;color:rgba(0,0,0,.48);margin-top:2
 </footer>
 
 <script>
-// PARALLAX
+// PARALLAX backgrounds
 window.addEventListener('scroll', function(){
-  const scrolled = window.scrollY;
-  const hero = document.getElementById('heroParallax');
-  if(hero) hero.style.transform = 'translateY(' + (scrolled * 0.25) + 'px)';
-  const ls1 = document.getElementById('lifestyleParallax');
-  if(ls1) ls1.style.transform = 'translateY(' + ((scrolled - window.innerHeight) * 0.3) + 'px)';
-  const p1 = document.getElementById('parallax1');
-  if(p1) p1.style.transform = 'translateY(' + ((scrolled - window.innerHeight*0.5) * 0.15) + 'px)';
-  const ls2 = document.getElementById('lifestyleParallax2');
-  if(ls2) ls2.style.transform = 'translateY(' + ((scrolled - window.innerHeight*3.5) * 0.3) + 'px)';
+  const sy = window.scrollY;
+  const vh = window.innerHeight;
+
+  const hp = document.getElementById('heroParallax');
+  if(hp) hp.style.transform = 'translateY(' + (sy * 0.2) + 'px)';
+
+  const l1 = document.getElementById('ls1');
+  if(l1) {
+    const rect = l1.parentElement.getBoundingClientRect();
+    const offset = rect.top;
+    l1.style.transform = 'translateY(' + (offset * 0.25) + 'px)';
+  }
+
+  const l2 = document.getElementById('ls2');
+  if(l2) {
+    const rect = l2.parentElement.getBoundingClientRect();
+    const offset = rect.top;
+    l2.style.transform = 'translateY(' + (offset * 0.25) + 'px)';
+  }
+
+  // DECOMPOSITION — prenda se descompone al hacer scroll
+  const decomp = document.getElementById('decompSection');
+  if(decomp) {
+    const rect = decomp.getBoundingClientRect();
+    const totalHeight = decomp.offsetHeight - vh;
+    const scrolled = Math.abs(rect.top);
+    const progress = Math.min(Math.max(scrolled / totalHeight, 0), 1);
+
+    const bar = document.getElementById('decompBar');
+    if(bar) bar.style.width = (progress * 100) + '%';
+
+    // Capa por capa: a medida que avanza el scroll se separan
+    const layers = [
+      {el:'layerBase',    tx:0,   ty:0,    sc:1,    op:1},
+      {el:'layerTejido',  tx:80,  ty:-40,  sc:.88,  op:1},
+      {el:'layerCostura', tx:-60, ty:-80,  sc:.76,  op:1},
+      {el:'layerAislante',tx:100, ty:-120, sc:.64,  op:1},
+      {el:'layerForro',   tx:-80, ty:-160, sc:.52,  op:1}
+    ];
+
+    layers.forEach((l, i) => {
+      const el = document.getElementById(l.el);
+      if(!el) return;
+      const threshold = i * 0.18;
+      const p = Math.max(0, Math.min(1, (progress - threshold) / 0.22));
+      const eased = 1 - Math.pow(1 - p, 3); // ease out cubic
+
+      el.style.opacity = i === 0 ? (1 - p * 0.3) : (p > 0 ? (0.3 + p * 0.7) : 0);
+      el.style.transform = 'translate(' + (l.tx * eased) + 'px, ' + (l.ty * eased) + 'px) scale(' + (1 - (1 - l.sc) * eased) + ')';
+    });
+
+    // Update label
+    const label = document.getElementById('decompLabel');
+    if(label) {
+      const names = [
+        'Prenda completa',
+        'Tejido exterior &mdash; Poli\u00e9ster reciclado',
+        'Costuras termoselladas',
+        'Aislante t\u00e9rmico',
+        'Forro interior &mdash; Algod\u00f3n org\u00e1nico'
+      ];
+      const idx = Math.min(Math.floor(progress / 0.2), names.length - 1);
+      label.innerHTML = '<strong>' + names[idx].split(' &mdash;')[0] + '</strong>' + (names[idx].includes('&mdash;') ? ' &mdash; ' + names[idx].split('&mdash;')[1] : '') + '<br><span style="font-size:12px;opacity:.5">Despl\u00e1zate para descomponer</span>';
+    }
+  }
 }, {passive:true});
 
 // COLLECTION GRID
@@ -247,11 +340,11 @@ const grid = document.getElementById('collectionGrid');
 products.forEach((p, i) => {
   const card = document.createElement('div');
   card.className = 'grid-card fade-up';
-  card.style.transitionDelay = i * 0.1 + 's';
+  card.style.transitionDelay = (i * 0.12) + 's';
   card.innerHTML = '<img src="' + p.img + '" alt="' + p.name + '" loading="lazy">' +
     '<h3>' + p.name + '</h3><p>' + p.desc + '</p>' +
-    '<span class="price">' + p.price + '</span>' +
-    '<div class="cta-group" style="margin-top:12px">' +
+    '<div class="price">' + p.price + '</div>' +
+    '<div class="cta-group" style="margin-top:10px">' +
     '<a href="#" class="cta-pill link" style="font-size:14px">Comprar</a>' +
     '<a href="#" class="cta-pill link" style="font-size:14px">Saber m\u00e1s</a></div>';
   grid.appendChild(card);
@@ -259,15 +352,15 @@ products.forEach((p, i) => {
 
 // INTERSECTION OBSERVER
 const obs = new IntersectionObserver(e => {
-  e.forEach(e => { if(e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
-}, {threshold:.1});
+  e.forEach(e => { if(e.isIntersecting) { e.target.classList.add('visible'); } });
+}, {threshold:.08});
 document.querySelectorAll('.fade-up').forEach(e => obs.observe(e));
 
 // NAV HIDE/SHOW
 let lastScroll = 0;
 window.addEventListener('scroll', () => {
   const cur = window.scrollY;
-  document.getElementById('nav').style.transform = cur > lastScroll && cur > 80 ? 'translateY(-100%)' : 'translateY(0)';
+  document.getElementById('nav').style.transform = cur > lastScroll && cur > 100 ? 'translateY(-100%)' : 'translateY(0)';
   lastScroll = cur;
 }, {passive:true});
 </script>
