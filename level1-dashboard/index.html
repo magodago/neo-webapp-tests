@@ -1,0 +1,297 @@
+<!DOCTYPE html><html lang="es"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Panel NEO Labs</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Sora:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#050508;--bg2:#0a0a12;--card:#0d0d18;--gold:#d4af37;--gold2:#c9a840;--gold3:#b8952e;--text:#e8e0d0;--muted:#908878;--font-display:'Syne',sans-serif;--font-body:'Sora',sans-serif;--radius:16px}
+body{background:var(--bg);color:var(--text);font-family:var(--font-body);font-weight:300;line-height:1.6;overflow-x:hidden}
+.bg-grid{position:fixed;inset:0;z-index:0;pointer-events:none;background-image:linear-gradient(rgba(212,175,55,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(212,175,55,.03) 1px,transparent 1px);background-size:60px 60px}
+.content{position:relative;z-index:1}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(5,5,8,.85);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border-bottom:1px solid rgba(212,175,55,.08);transition:transform .4s cubic-bezier(.4,0,.2,1);padding:16px 24px}
+nav.hidden{transform:translateY(-100%)}
+.nav-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between}
+.nav-logo{font-family:var(--font-display);font-size:1.3rem;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:#fff}
+.nav-logo span{color:var(--gold)}
+.nav-links{display:flex;gap:24px;list-style:none}
+.nav-links a{color:var(--muted);text-decoration:none;font-size:.85rem;font-weight:400;transition:color .3s;letter-spacing:.5px}
+.nav-links a:hover{color:var(--gold)}
+
+/* HERO */
+.hero{min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:120px 24px 80px;position:relative;overflow:hidden}
+.hero-glow{position:absolute;top:-40%;left:50%;transform:translateX(-50%);width:600px;height:600px;background:radial-gradient(circle,rgba(212,175,55,.06) 0%,transparent 70%);pointer-events:none}
+.hero h1{font-family:var(--font-display);font-size:clamp(2.4rem,6vw,4rem);font-weight:800;color:#fff;letter-spacing:-1.5px;line-height:1.06;margin-bottom:16px}
+.hero h1 span{color:var(--gold)}
+.hero p{font-size:1.05rem;color:var(--muted);max-width:500px;margin:0 auto 32px;font-weight:300}
+.hero-badge{display:inline-block;padding:6px 16px;border:1px solid rgba(212,175,55,.25);border-radius:100px;font-size:.75rem;color:var(--gold);letter-spacing:1px;text-transform:uppercase;margin-bottom:20px;font-family:var(--font-display)}
+
+/* METRICS */
+.metrics{padding:0 24px 64px;max-width:1200px;margin:0 auto}
+.metrics-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.metric-card{background:var(--card);border-radius:var(--radius);padding:24px;border-top:1px solid rgba(212,175,55,.12);transition:all .5s cubic-bezier(.4,0,.2,1);position:relative;overflow:hidden}
+.metric-card::after{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);opacity:0;transition:opacity .5s}
+.metric-card:hover::after{opacity:1}
+.metric-card:hover{transform:translateY(-4px)}
+.metric-label{font-size:.75rem;color:var(--muted);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:8px;font-weight:400}
+.metric-value{font-family:var(--font-display);font-size:2rem;font-weight:800;color:#fff;letter-spacing:-1px}
+.metric-value span{color:var(--gold)}
+.metric-change{font-size:.75rem;color:#4ade80;margin-top:4px}
+canvas.metric-sparkline{width:100%;height:32px;margin-top:12px;border-radius:4px;display:block}
+
+@keyframes breathe{0%,100%{box-shadow:0 0 8px rgba(212,175,55,.03)}50%{box-shadow:0 0 20px rgba(212,175,55,.1)}}
+.breathing{animation:breathe 3s ease-in-out infinite}
+
+/* CHART */
+.chart-section{padding:0 24px 64px;max-width:1200px;margin:0 auto}
+.chart-card{background:var(--card);border-radius:var(--radius);padding:32px;border-top:1px solid rgba(212,175,55,.12)}
+.chart-card h3{font-family:var(--font-display);font-size:1.1rem;font-weight:700;color:#fff;margin-bottom:24px;letter-spacing:-.5px}
+.chart-card h3 span{color:var(--gold)}
+#blogChart{width:100%;height:220px;border-radius:8px;display:block}
+
+/* ACTIVITY */
+.activity-section{padding:0 24px 64px;max-width:1200px;margin:0 auto}
+.activity-card{background:var(--card);border-radius:var(--radius);padding:32px;border-top:1px solid rgba(212,175,55,.12)}
+.activity-card h3{font-family:var(--font-display);font-size:1.1rem;font-weight:700;color:#fff;margin-bottom:24px;letter-spacing:-.5px}
+.activity-card h3 span{color:var(--gold)}
+.activity-table{width:100%;border-collapse:collapse}
+.activity-table th{text-align:left;font-size:.7rem;text-transform:uppercase;letter-spacing:1.5px;color:var(--muted);padding:8px 12px;border-bottom:1px solid rgba(255,255,255,.05);font-weight:400}
+.activity-table td{padding:10px 12px;font-size:.85rem;color:var(--text);border-bottom:1px solid rgba(255,255,255,.03)}
+.activity-table tr:hover{background:rgba(212,175,55,.03)}
+.status{display:inline-block;padding:2px 10px;border-radius:100px;font-size:.7rem;font-weight:500;letter-spacing:.3px}
+.status-ok{background:rgba(74,222,128,.1);color:#4ade80;border:1px solid rgba(74,222,128,.2)}
+.status-warn{background:rgba(251,191,36,.1);color:#fbbf24;border:1px solid rgba(251,191,36,.2)}
+.status-error{background:rgba(248,113,113,.1);color:#f87171;border:1px solid rgba(248,113,113,.2)}
+
+/* ACTIONS */
+.actions-section{padding:0 24px 64px;max-width:1200px;margin:0 auto}
+.actions-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.action-btn{background:var(--card);border:1px solid rgba(212,175,55,.08);border-radius:var(--radius);padding:24px;text-align:center;cursor:pointer;transition:all .4s;font-family:var(--font-body);font-size:.85rem;color:var(--text);font-weight:400}
+.action-btn:hover{background:rgba(212,175,55,.06);border-color:rgba(212,175,55,.2);transform:translateY(-3px)}
+.action-btn .icon{font-size:1.4rem;margin-bottom:8px;display:block;color:var(--gold)}
+.action-btn .label{display:block}
+
+/* FOOTER */
+footer{text-align:center;padding:40px 24px;border-top:1px solid rgba(212,175,55,.06);font-size:.8rem;color:var(--muted)}
+footer .footer-logo{font-family:var(--font-display);font-size:1.1rem;font-weight:700;letter-spacing:4px;color:#fff;margin-bottom:8px}
+footer .footer-logo span{color:var(--gold)}
+
+/* RESPONSIVE */
+@media(max-width:900px){.metrics-grid{grid-template-columns:repeat(2,1fr)}.actions-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:600px){.metrics-grid{grid-template-columns:1fr 1fr;gap:12px}.metric-card{padding:16px}.metric-value{font-size:1.5rem}.actions-grid{grid-template-columns:1fr 1fr;gap:12px}.nav-links{display:none}}
+
+/* REVEAL */
+.reveal{opacity:0;transform:translateY(24px);transition:all .7s cubic-bezier(.4,0,.2,1)}
+.reveal.visible{opacity:1;transform:translateY(0)}
+</style>
+</head><body>
+<div class="bg-grid"></div>
+<div class="content">
+
+<nav id="nav"><div class="nav-inner">
+  <div class="nav-logo">NE<span>O</span></div>
+  <ul class="nav-links">
+    <li><a href="#metrics">M\u00e9tricas</a></li>
+    <li><a href="#chart">Gr\u00e1fico</a></li>
+    <li><a href="#activity">Actividad</a></li>
+  </ul>
+</div></nav>
+
+<section class="hero">
+  <div class="hero-glow"></div>
+  <div>
+    <div class="hero-badge">Panel de Control</div>
+    <h1>NEO <span>Labs</span></h1>
+    <p>M\u00e9tricas en tiempo real de tu ecosistema de automatizaci\u00f3n con IA</p>
+  </div>
+</section>
+
+<div class="bg-grid" style="position:absolute"></div>
+
+<section id="metrics" class="metrics">
+  <div class="metrics-grid" id="metricsGrid"></div>
+</section>
+
+<section id="chart" class="chart-section reveal">
+  <div class="chart-card">
+    <h3>Visitas <span>Blog</span> Semanal</h3>
+    <canvas id="blogChart"></canvas>
+  </div>
+</section>
+
+<section id="activity" class="activity-section reveal">
+  <div class="activity-card">
+    <h3>Actividad <span>Reciente</span></h3>
+    <table class="activity-table">
+      <thead><tr><th>Fecha</th><th>Evento</th><th>Estado</th></tr></thead>
+      <tbody id="activityBody"></tbody>
+    </table>
+  </div>
+</section>
+
+<section class="actions-section reveal">
+  <div class="actions-grid" id="actionsGrid"></div>
+</section>
+
+<footer>
+  <div class="footer-logo">NE<span>O</span></div>
+  <p>NEO Labs \u2014 Automatizaci\u00f3n Inteligente &copy; 2026</p>
+</footer>
+
+</div>
+<script>
+// Nav hide/show on scroll
+let lastScroll=0;
+window.addEventListener('scroll',()=>{
+  const cur=window.scrollY;
+  document.getElementById('nav').classList.toggle('hidden',cur>lastScroll&&cur>80);
+  lastScroll=cur;
+},{passive:true});
+
+// Metrics data
+const metrics=[
+  {label:'Art\u00edculos Publicados',value:12,change:'+3 esta semana',sparkline:[4,6,5,8,7,10,12]},
+  {label:'Crons Activos',value:8,change:'100% operativos',sparkline:[8,8,7,8,8,7,8]},
+  {label:'Gasto en Tokens Hoy',value:'$0.42',change:'-12% vs ayer',sparkline:[.58,.62,.55,.48,.45,.42],dollar:true},
+  {label:'Leads Capturados',value:47,change:'+5 hoy',sparkline:[12,18,25,31,38,42,47]}
+];
+
+const METRIC_NAMES=['Art\u00edculos','Crons','Tokens','Leads'];
+
+function drawSparkline(canvas,data,dollar){
+  const ctx=canvas.getContext('2d');
+  const W=canvas.width=canvas.offsetWidth*2;
+  const H=canvas.height=64;
+  const pad=4;
+  const w=(W-pad*2)/(data.length-1);
+  const max=Math.max(...data);
+  ctx.clearRect(0,0,W,H);
+  ctx.beginPath();
+  data.forEach((v,i)=>{
+    const x=pad+i*w,y=H-pad-(v/max)*(H-pad*2);
+    i===0?ctx.moveTo(x,y):ctx.lineTo(x,y);
+  });
+  ctx.strokeStyle='#d4af37';
+  ctx.lineWidth=2;
+  ctx.stroke();
+  // fill
+  ctx.lineTo(pad+(data.length-1)*w,H-pad);
+  ctx.lineTo(pad,H-pad);
+  ctx.closePath();
+  const grad=ctx.createLinearGradient(0,0,0,H);
+  grad.addColorStop(0,'rgba(212,175,55,.15)');
+  grad.addColorStop(1,'rgba(212,175,55,0)');
+  ctx.fillStyle=grad;
+  ctx.fill();
+}
+
+const grid=document.getElementById('metricsGrid');
+metrics.forEach((m,i)=>{
+  const card=document.createElement('div');
+  card.className=`metric-card breathing reveal`;
+  card.style.animationDelay=`${i*0.15}s`;
+  card.innerHTML=`
+    <div class="metric-label">${m.label}</div>
+    <div class="metric-value">${m.dollar?'':''}${m.value}${m.dollar?'':''}</div>
+    <div class="metric-change">${m.change}</div>
+    <canvas class="metric-sparkline" id="spark${i}"></canvas>
+  `;
+  grid.appendChild(card);
+  setTimeout(()=>{
+    const c=document.getElementById(`spark${i}`);
+    drawSparkline(c,m.sparkline,m.dollar);
+  },100);
+});
+
+// Bar chart
+const days=['Lun','Mar','Mi\u00e9','Jue','Vie','S\u00e1b','Dom'];
+const views=[142,187,165,234,298,176,89];
+const chart=document.getElementById('blogChart');
+const ctx=chart.getContext('2d');
+function drawChart(){
+  const W=chart.width=chart.parentElement.offsetWidth*2;
+  const H=chart.height=440;
+  const pad={t:20,b:40,l:40,r:20};
+  const cw=(W-pad.l-pad.r)/days.length;
+  const barW=cw*0.6;
+  const maxV=Math.max(...views)*1.15;
+  ctx.clearRect(0,0,W,H);
+  // grid lines
+  for(let i=0;i<4;i++){
+    const y=pad.t+(H-pad.t-pad.b)*(1-i/3);
+    ctx.beginPath();ctx.moveTo(pad.l,y);ctx.lineTo(W-pad.r,y);
+    ctx.strokeStyle='rgba(255,255,255,.04)';ctx.lineWidth=1;ctx.stroke();
+    ctx.fillStyle='#908878';ctx.font='20px Sora';ctx.textAlign='right';
+    ctx.fillText(Math.round(maxV*i/3),pad.l-8,y+6);
+  }
+  // bars
+  views.forEach((v,i)=>{
+    const x=pad.l+i*cw+(cw-barW)/2;
+    const bh=(v/maxV)*(H-pad.t-pad.b);
+    const y=H-pad.b-bh;
+    const grad=ctx.createLinearGradient(x,y,x,H-pad.b);
+    grad.addColorStop(0,'rgba(212,175,55,.8)');
+    grad.addColorStop(.5,'rgba(212,175,55,.4)');
+    grad.addColorStop(1,'rgba(212,175,55,.1)');
+    ctx.fillStyle=grad;
+    ctx.beginPath();
+    const r=Math.min(barW/2,6);
+    ctx.moveTo(x+r,y);
+    ctx.lineTo(x+barW-r,y);
+    ctx.quadraticCurveTo(x+barW,y,x+barW,y+r);
+    ctx.lineTo(x+barW,H-pad.b);
+    ctx.lineTo(x,H-pad.b);
+    ctx.lineTo(x,y+r);
+    ctx.quadraticCurveTo(x,y,x+r,y);
+    ctx.fill();
+    // value
+    ctx.fillStyle='#fff';ctx.font='22px Syne';ctx.fontWeight='700';ctx.textAlign='center';
+    ctx.fillText(v,x+barW/2,y-12);
+    // label
+    ctx.fillStyle='#908878';ctx.font='20px Sora';ctx.fillText(days[i],x+barW/2,H-pad.b+28);
+  });
+}
+drawChart();
+window.addEventListener('resize',drawChart);
+
+// Activity table
+const activities=[
+  {date:'16/06/2026 09:05',event:'Briefing matutino generado',status:'ok'},
+  {date:'16/06/2026 08:30',event:'Recordatorio tensi\u00f3n enviado',status:'ok'},
+  {date:'16/06/2026 08:00',event:'Sincronizaci\u00f3n OMI KB',status:'ok'},
+  {date:'16/06/2026 07:00',event:'Deep Research - fase an\u00e1lisis',status:'warn'},
+  {date:'15/06/2026 21:00',event:'S\u00edntesis DeepSeek completada',status:'ok'},
+  {date:'15/06/2026 20:00',event:'Gema KB Sync - timeout',status:'error'}
+];
+const tbody=document.getElementById('activityBody');
+activities.forEach(a=>{
+  const tr=document.createElement('tr');
+  const statusMap={ok:'Correcto',warn:'Advertencia',error:'Error'};
+  tr.innerHTML=`<td>${a.date}</td><td>${a.event}</td><td><span class="status status-${a.status}">${statusMap[a.status]}</span></td>`;
+  tbody.appendChild(tr);
+});
+
+// Actions
+const actions=[
+  {icon:'\u25B6',label:'Generar Reporte'},
+  {icon:'\u21E9',label:'Exportar Datos'},
+  {icon:'\u21BB',label:'Ejecutar Respaldo'},
+  {icon:'\u2713',label:'Verificar Sistema'}
+];
+const ag=document.getElementById('actionsGrid');
+actions.forEach(a=>{
+  const btn=document.createElement('button');
+  btn.className='action-btn';
+  btn.innerHTML=`<span class="icon">${a.icon}</span><span class="label">${a.label}</span>`;
+  btn.onclick=()=>alert(`Acci\u00f3n: ${a.label}`);
+  ag.appendChild(btn);
+});
+
+// IntersectionObserver
+const obs=new IntersectionObserver(e=>{e.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')})},{threshold:.1});
+document.querySelectorAll('.reveal').forEach(e=>obs.observe(e));
+</script>
+</body></html>

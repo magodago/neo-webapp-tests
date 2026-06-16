@@ -1,0 +1,210 @@
+<!DOCTYPE html><html lang="es"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>NEO Tools — Herramientas IA para tu Negocio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Sora:wght@200;300;400;500;600&family=Orbitron:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#050508;--bg2:#0a0a12;--card:#0d0d18;--gold:#d4af37;--gold2:#c9a840;--gold3:#b8952e;--text:#e8e0d0;--muted:#908878;--font-display:'Syne',sans-serif;--font-body:'Sora',sans-serif;--font-brand:'Orbitron',sans-serif;--radius:16px}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:var(--font-body);font-weight:300;line-height:1.65;overflow-x:hidden}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(5,5,8,.85);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border-bottom:1px solid rgba(212,175,55,.08);transition:transform .5s cubic-bezier(.4,0,.2,1);padding:18px 24px}
+nav.hidden{transform:translateY(-100%)}
+.nav-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between}
+.nav-logo{font-family:var(--font-display);font-size:1.3rem;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:#fff}
+.nav-logo span{color:var(--gold)}
+.nav-links{display:flex;gap:28px;list-style:none}
+.nav-links a{color:var(--muted);text-decoration:none;font-size:.8rem;font-weight:400;transition:color .3s;letter-spacing:.5px;text-transform:uppercase}
+.nav-links a:hover{color:var(--gold)}
+.nav-cta{padding:8px 20px;border:1px solid var(--gold);border-radius:100px;color:var(--gold)!important;font-size:.75rem!important;transition:all .3s!important}
+.nav-cta:hover{background:rgba(212,175,55,.1)!important}
+
+/* HERO */
+.hero{min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:140px 24px 80px;position:relative;overflow:hidden;background:radial-gradient(ellipse at 30% 20%,#1a1508 0%,#050508 60%)}
+.hero .bg-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(212,175,55,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(212,175,55,.04) 1px,transparent 1px);background-size:60px 60px;pointer-events:none}
+.hero-glow{position:absolute;top:-30%;left:50%;transform:translateX(-50%);width:800px;height:800px;background:radial-gradient(circle,rgba(212,175,55,.05) 0%,transparent 60%);pointer-events:none}
+.hero-content{position:relative;z-index:2;max-width:800px}
+.hero-badge{display:inline-block;padding:6px 18px;border:1px solid rgba(212,175,55,.25);border-radius:100px;font-size:.7rem;color:var(--gold);letter-spacing:2px;text-transform:uppercase;margin-bottom:24px;font-family:var(--font-display)}
+.hero h1{font-family:var(--font-display);font-size:clamp(2.6rem,7vw,4.6rem);font-weight:800;color:#fff;letter-spacing:-2px;line-height:1.04;margin-bottom:20px}
+.hero h1 span{color:var(--gold)}
+.hero p{font-size:1.05rem;color:var(--muted);max-width:560px;margin:0 auto 36px;font-weight:300}
+.hero-cta{display:inline-flex;align-items:center;gap:12px;padding:14px 36px;background:linear-gradient(135deg,var(--gold),var(--gold3));color:#050508!important;text-decoration:none;border-radius:100px;font-family:var(--font-display);font-weight:700;font-size:.9rem;letter-spacing:1px;transition:all .3s;border:none;cursor:pointer}
+.hero-cta:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(212,175,55,.2)}
+
+/* FEATURES STRIP */
+.strip{padding:24px;background:rgba(212,175,55,.04);border-top:1px solid rgba(212,175,55,.08);border-bottom:1px solid rgba(212,175,55,.08)}
+.strip-inner{max-width:800px;margin:0 auto;display:flex;justify-content:center;gap:40px;flex-wrap:wrap}
+.strip-item{font-family:var(--font-display);font-size:.8rem;color:var(--gold);letter-spacing:2px;text-transform:uppercase;font-weight:600}
+
+/* BG SECTIONS */
+.bg-section{position:relative;min-height:55vh;display:flex;align-items:center;overflow:hidden}
+.bg-section img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;filter:brightness(.35) saturate(.8)}
+.bg-overlay{position:absolute;inset:0;z-index:1}
+.bg-overlay.left{background:linear-gradient(90deg,rgba(5,5,8,.4) 25%,rgba(5,5,8,.1) 65%,transparent)}
+.bg-overlay.right{background:linear-gradient(270deg,rgba(5,5,8,.4) 25%,rgba(5,5,8,.1) 65%,transparent)}
+.bg-section .wrap{position:relative;z-index:2;max-width:1200px;margin:0 auto;padding:60px 24px;width:100%;display:grid;grid-template-columns:1fr 1fr;align-items:center;min-height:55vh}
+.bg-section .text{max-width:480px}
+.bg-section .text h2{font-family:var(--font-display);font-size:clamp(1.6rem,4vw,2.4rem);font-weight:800;color:#fff;letter-spacing:-1px;line-height:1.1;margin-bottom:16px}
+.bg-section .text h2 span{color:var(--gold)}
+.bg-section .text p{font-size:.95rem;color:#fff;font-weight:300;line-height:1.7;text-shadow:0 2px 12px rgba(0,0,0,.8),0 0 30px rgba(0,0,0,.4)}
+.bg-section .empty{}
+@media(max-width:768px){.bg-section .wrap{grid-template-columns:1fr}.bg-section .empty{display:none}.bg-overlay.left,.bg-overlay.right{background:linear-gradient(135deg,rgba(5,5,8,.5) 20%,rgba(5,5,8,.15) 60%,transparent)}}
+
+/* FEATURES GRID */
+.features-section{padding:80px 24px;max-width:1200px;margin:0 auto}
+.features-section h2{font-family:var(--font-display);font-size:clamp(1.6rem,3.5vw,2.2rem);font-weight:800;color:#fff;text-align:center;letter-spacing:-1px;margin-bottom:12px}
+.features-section h2 span{color:var(--gold)}
+.features-section .sub{text-align:center;color:var(--muted);font-size:.9rem;margin-bottom:48px;font-weight:300}
+.features-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.feature-card{background:var(--card);border-radius:var(--radius);padding:32px 24px;border-top:1px solid rgba(212,175,55,.12);transition:all .5s cubic-bezier(.4,0,.2,1)}
+.feature-card:hover{transform:translateY(-8px)}
+.feature-card .icon{font-size:1.8rem;margin-bottom:16px;display:block}
+.feature-card h3{font-family:var(--font-display);font-size:1rem;font-weight:700;color:#fff;margin-bottom:8px;letter-spacing:-.3px}
+.feature-card p{font-size:.85rem;color:var(--muted);line-height:1.6;font-weight:300}
+@media(max-width:768px){.features-grid{grid-template-columns:1fr 1fr}}@media(max-width:500px){.features-grid{grid-template-columns:1fr}}
+
+/* STATS */
+.stats-bar{background:linear-gradient(135deg,rgba(212,175,55,.08),rgba(212,175,55,.02));padding:48px 24px;border-top:1px solid rgba(212,175,55,.1);border-bottom:1px solid rgba(212,175,55,.1)}
+.stats-inner{max-width:900px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:24px;text-align:center}
+.stat-value{font-family:var(--font-display);font-size:clamp(1.4rem,3vw,2.2rem);font-weight:800;color:var(--gold);letter-spacing:-1px}
+.stat-label{font-size:.75rem;color:var(--muted);text-transform:uppercase;letter-spacing:1.5px;margin-top:4px;font-weight:400}
+@media(max-width:600px){.stats-inner{grid-template-columns:repeat(2,1fr);gap:16px}}
+
+/* CTA */
+.cta-section{padding:100px 24px;text-align:center;background:var(--bg2)}
+.cta-section h2{font-family:var(--font-display);font-size:clamp(1.8rem,4vw,2.8rem);font-weight:800;color:#fff;letter-spacing:-1.5px;margin-bottom:16px}
+.cta-section h2 span{color:var(--gold)}
+.cta-section p{color:var(--muted);font-size:.95rem;margin-bottom:36px;font-weight:300}
+
+/* FOOTER */
+footer{text-align:center;padding:48px 24px 32px;background:var(--bg);border-top:1px solid rgba(212,175,55,.05)}
+footer .flogo{font-family:var(--font-display);font-size:1.1rem;font-weight:700;letter-spacing:4px;color:#fff;margin-bottom:12px}
+footer .flogo span{color:var(--gold)}
+footer p{font-size:.8rem;color:var(--muted)}
+footer .links{display:flex;justify-content:center;gap:24px;margin-top:16px;flex-wrap:wrap}
+footer .links a{color:var(--muted);text-decoration:none;font-size:.8rem;transition:color .3s}
+footer .links a:hover{color:var(--gold)}
+
+/* REVEAL */
+.reveal{opacity:0;transform:translateY(30px);transition:all .7s cubic-bezier(.4,0,.2,1)}
+.reveal.visible{opacity:1;transform:translateY(0)}
+@keyframes breathe{0%,100%{box-shadow:0 0 8px rgba(212,175,55,.03)}50%{box-shadow:0 0 20px rgba(212,175,55,.1)}}
+.breathing{animation:breathe 3s ease-in-out infinite}
+</style>
+</head><body>
+
+<nav id="nav"><div class="nav-inner">
+  <div class="nav-logo">NE<span>O</span></div>
+  <ul class="nav-links">
+    <li><a href="#features">Herramientas</a></li>
+    <li><a href="#stats">Estad\u00edsticas</a></li>
+    <li><a href="#cta" class="nav-cta">Comenzar</a></li>
+  </ul>
+</div></nav>
+
+<section class="hero">
+  <div class="bg-grid"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-content reveal">
+    <div class="hero-badge">NEO Tools</div>
+    <h1>Herramientas <span>IA</span> para tu Negocio</h1>
+    <p>Automatiza tu contenido, analiza tus datos y escala tu presencia digital con inteligencia artificial. Sin servidores, sin complicaciones.</p>
+    <a href="#features" class="hero-cta">Explorar Herramientas</a>
+  </div>
+</section>
+
+<div class="strip reveal">
+  <div class="strip-inner">
+    <span class="strip-item">IA Agents</span>
+    <span class="strip-item">Automatizaci\u00f3n</span>
+    <span class="strip-item">Analytics</span>
+  </div>
+</div>
+
+<section class="bg-section reveal">
+  <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?w=1400&q=85" alt="" loading="lazy">
+  <div class="bg-overlay left"></div>
+  <div class="wrap">
+    <div class="text">
+      <h2>Automatizaci\u00f3n <span>Inteligente</span></h2>
+      <p>Deja que nuestros agentes de IA trabajen por ti. Desde la generaci\u00f3n de contenido hasta el an\u00e1lisis de datos, cada herramienta est\u00e1 dise\u00f1ada para ahorrarte horas de trabajo manual.</p>
+    </div>
+    <div class="empty"></div>
+  </div>
+</section>
+
+<section id="features" class="features-section reveal">
+  <h2><span>Herramientas</span> para Escalar</h2>
+  <p class="sub">Seis soluciones que transformar\u00e1n tu flujo de trabajo</p>
+  <div class="features-grid" id="featuresGrid"></div>
+</section>
+
+<section class="bg-section reveal">
+  <img src="https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=1400&q=85" alt="" loading="lazy">
+  <div class="bg-overlay right"></div>
+  <div class="wrap">
+    <div class="empty"></div>
+    <div class="text" style="grid-column:2">
+      <h2>An\u00e1lisis <span>Predictivo</span></h2>
+      <p>Convierte tus datos en decisiones. Nuestros algoritmos de IA analizan patrones, predicen tendencias y te recomiendan el mejor curso de acci\u00f3n para tu negocio.</p>
+    </div>
+  </div>
+</section>
+
+<section id="stats" class="stats-bar reveal">
+  <div class="stats-inner">
+    <div><div class="stat-value">12+</div><div class="stat-label">Herramientas</div></div>
+    <div><div class="stat-value">230+</div><div class="stat-label">Usuarios</div></div>
+    <div><div class="stat-value">99.9%</div><div class="stat-label">Uptime</div></div>
+    <div><div class="stat-value">24/7</div><div class="stat-label">Soporte</div></div>
+  </div>
+</section>
+
+<section id="cta" class="cta-section reveal">
+  <h2>Transforma tu Negocio <span>Ahora</span></h2>
+  <p>\u00danete a los profesionales que ya automatizan su \u00e9xito con NEO Tools.</p>
+  <a href="#" class="hero-cta">Comenzar Ahora</a>
+</section>
+
+<footer>
+  <div class="flogo">NE<span>O</span></div>
+  <p>NEO Labs &mdash; Automatizaci\u00f3n Inteligente &copy; 2026</p>
+  <div class="links"><a href="#">T\u00e9rminos</a><a href="#">Privacidad</a><a href="#">Contacto</a></div>
+</footer>
+
+<script>
+// Nav hide/show
+let lastScroll=0;
+window.addEventListener('scroll',()=>{
+  const cur=window.scrollY;
+  document.getElementById('nav').classList.toggle('hidden',cur>lastScroll&&cur>80);
+  lastScroll=cur;
+},{passive:true});
+
+// Features data
+const features=[
+  {icon:'\u2699\uFE0F',title:'Agentes IA',desc:'Agentes aut\u00f3nomos que ejecutan tareas complejas sin supervisi\u00f3n continua.'},
+  {icon:'\u2709\uFE0F',title:'Email Inteligente',desc:'Filtra, resume y responde correos autom\u00e1ticamente con IA.'},
+  {icon:'\uD83D\uDCCA',title:'Analytics',desc:'Paneles interactivos con m\u00e9tricas en tiempo real de tu negocio.'},
+  {icon:'\uD83D\uDD17',title:'Automatizaci\u00f3n Web',desc:'Conecta APIs, crons y pipelines sin escribir c\u00f3digo.'},
+  {icon:'\uD83E\uDD16',title:'Chatbots',desc:'Asistentes virtuales para atender a tus clientes 24/7.'},
+  {icon:'\uD83D\uDCF0',title:'Contenido SEO',desc:'Genera art\u00edculos optimizados para buscadores autom\u00e1ticamente.'}
+];
+
+const grid=document.getElementById('featuresGrid');
+features.forEach((f,i)=>{
+  const card=document.createElement('div');
+  card.className='feature-card breathing';
+  card.style.animationDelay=`${i*0.15}s`;
+  card.innerHTML=`<span class="icon">${f.icon}</span><h3>${f.title}</h3><p>${f.desc}</p>`;
+  grid.appendChild(card);
+});
+
+// IntersectionObserver
+const obs=new IntersectionObserver(e=>{e.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')})},{threshold:.1});
+document.querySelectorAll('.reveal').forEach(e=>obs.observe(e));
+</script>
+</body></html>
